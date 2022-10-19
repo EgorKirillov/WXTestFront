@@ -1,9 +1,26 @@
 import {setError, setIsInitialize, setStatusLoading} from "../../app/appStatusReducer";
 import {AppThunk} from "../../app/store";
 
+
+// temp value for DEV
+const itemsData:ItemType[] = [
+  {id:'1',name:'first', date: (new Date(Math.random()*1660000000000)).toDateString(),distance: Math.ceil(Math.random()*1500), count: Math.floor(Math.random()*150)},
+  {id:'2',name:'second', date: (new Date(Math.random()*1660000000000)).toDateString(),distance: Math.ceil(Math.random()*1500), count: Math.floor(Math.random()*150)},
+  {id:'3',name:'aaa', date: (new Date(Math.random()*1660000000000)).toDateString(),distance: Math.ceil(Math.random()*1500), count: Math.floor(Math.random()*150)},
+  {id:'4',name:'AAA', date: (new Date(Math.random()*1660000000000)).toDateString(),distance: Math.ceil(Math.random()*1500), count: Math.floor(Math.random()*150)},
+  {id:'5',name:'ddd', date: (new Date(Math.random()*1660000000000)).toDateString(),distance: Math.ceil(Math.random()*1500), count: Math.floor(Math.random()*150)},
+  {id:'6',name:'11s5', date: (new Date(Math.random()*1660000000000)).toDateString(),distance: Math.ceil(Math.random()*1500), count: Math.floor(Math.random()*150)},
+  {id:'7',name:'1ert', date: (new Date(Math.random()*1660000000000)).toDateString(),distance: Math.ceil(Math.random()*1500), count: Math.floor(Math.random()*150)},
+  {id:'8',name:'_fgdf', date: (new Date(Math.random()*1660000000000)).toDateString(),distance: Math.ceil(Math.random()*1500), count: Math.floor(Math.random()*150)},
+  {id:'9',name:'zzz', date: (new Date(Math.random()*1660000000000)).toDateString(),distance: Math.ceil(Math.random()*1500), count: Math.floor(Math.random()*150)},
+  {id:'10',name:'ZZZ', date: (new Date(Math.random()*1660000000000)).toDateString(),distance: Math.ceil(Math.random()*1500), count: Math.floor(Math.random()*150)},
+  {id:'11',name:'YYY', date: (new Date(Math.random()*1660000000000)).toDateString(),distance: Math.ceil(Math.random()*1500), count: Math.floor(Math.random()*150)},
+]
+
 const initialState: InitialStateType = {
-  items: [] as ItemType[],
-  queryParam: {} as QueryParamType
+  
+    items: itemsData as ItemType[],
+    queryParam: {} as QueryParamType
   
 }
 
@@ -64,7 +81,7 @@ export type InitialStateType = {
 export type ItemType = {
   id: string
   name: string
-  data: string
+  date: string
   count: number
   distance: number
 }
