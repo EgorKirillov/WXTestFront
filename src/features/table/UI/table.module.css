@@ -1,0 +1,22 @@
+.tableContainer {
+    width: 80%;
+    min-width: 700px;
+    margin: 20px auto 0;
+    /*border: solid 2px black;*/
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: center;
+
+}
+.table {
+    border-bottom: solid 2px #0a0b1f;
+    width:100%;
+    align-self: center;
+    background-color: rgba(199, 216, 220, 0.53);
+}
+.discription {
+    font-size: 12px;
+    text-align: end;
+}

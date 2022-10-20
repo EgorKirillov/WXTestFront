@@ -2,6 +2,7 @@ import React, {ChangeEvent, SyntheticEvent, useState} from 'react';
 import {ColumnSortNames, changeQueryParams, ColumnFilterNames} from "../../itemsReducer";
 import {useAppDispatch} from "../../../../common/hooks/hooks";
 import {createFilterQueryParams} from "../../../../common/utils/createQueryParams";
+import styles from './filter.module.css'
 
 export type MethodType = 'none' | '=' | 'included' | '>' | '<'
 
@@ -58,20 +59,20 @@ export const Filter = () => {
   
   return (
     <div>
-      <form>
-        <span>choise filter column</span>
-        <select name="column" placeholder={'filter by column'} value={undefined} onChange={selectName}>
-          <option value={"none"}> </option>
-          {filterNames.map(name => <option value={name}>{name.toUpperCase()}</option>)}
-        </ select>
+      <form className={styles.filterForm}>
+        <div className={styles.filterColumn}><span>SELECT filter column</span>
+          <select name="column" placeholder={'filter by column'} value={undefined} onChange={selectName}>
+            <option value={"none"}> </option>
+            {filterNames.map(name => <option value={name}>{name.toUpperCase()}</option>)}
+          </ select></div>
         
-        {name!! && < div>< span> choise filter method</span>
+        {name!! && < div className={styles.filterMethod}>< span>method</span>
             <select name="method" placeholder={'filter by column'} onChange={selectMethod}>
               {filterMethod.map(name => <option value={name}>{name.toUpperCase()}</option>)}
             </ select></div>}
         
         {name!! && method !== 'none' &&
-            <div><span>choise filter method</span>
+            <div className={styles.filterValue}><span>value</span>
                 <input type={inputType} onChange={changeInput} value={filterValue}/>
             </div>}
       </form>

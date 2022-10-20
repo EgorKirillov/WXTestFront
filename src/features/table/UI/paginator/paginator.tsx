@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../../common/hooks/hooks";
 import {changeQueryParams} from "../../itemsReducer";
+import styles from "./paginator.module.css"
 
 export const Paginator = () => {
   const currentPage = useAppSelector(state => state.items.queryParam.currentPage) || 1
@@ -28,7 +29,7 @@ export const Paginator = () => {
   }
   
   return (
-    <div>
+    <div className={styles.paginator}>
       {pages.map(p => {
         if (Math.abs(p - currentPage) < 3 || p === totalPagesCount || p === 1) {
           return <span onClick={() => onChangeCurrentPage(p)}
