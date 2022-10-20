@@ -21,8 +21,8 @@ export const TableHeader = () => {
   }
   
   return (
-    <thead className={styles.tableHeader}>
-    <tr className={styles.tableHeaderRow}>
+    <thead>
+    <tr>
       <th className={styles.name} onClick={sortByColumnName} id={'name'}>{createColumnName("name", sortColumn)}</th>
       <th className={styles.date}>DATE</th>
       <th className={styles.count} onClick={sortByColumnName} id={'count'}>{createColumnName("count", sortColumn)}</th>

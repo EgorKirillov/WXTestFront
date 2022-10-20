@@ -2,3 +2,20 @@
   font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
 }
+table {
+  border: 1px solid #69c;
+
+}
+th {
+  font-weight: 700;
+  color: #039;
+  border-bottom: 1px dashed #69c;
+  padding: 12px 17px;
+}
+td {
+  color: #669;
+  padding: 7px 17px;
+}
+tr:hover td {
+  background: #ccddff;
+}

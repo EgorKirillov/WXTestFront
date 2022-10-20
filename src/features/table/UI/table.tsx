@@ -11,8 +11,6 @@ export const Table = () => {
       <Filter/>
       <Paginator/>
       <table className={styles.table}>
-        
-        
         <TableHeader/>
         <TableBody/>
         <caption className={styles.discription}>Таблица наименование с датами количеством и дистанцией</caption>
