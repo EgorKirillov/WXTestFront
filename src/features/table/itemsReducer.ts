@@ -32,7 +32,7 @@ export const itemsReducer = (state: InitialStateType = initialState, action: Ite
         ...state,
         items: [...action.payload]
       }
-    case 'items/SET-QUERY-PARAMS':
+    case 'items/CHANGE-QUERY-PARAMS':
       return {
         ...state,
         queryParam:  {...state.queryParam , ...action.payload}
@@ -51,8 +51,8 @@ export const itemsReducer = (state: InitialStateType = initialState, action: Ite
 // actions
 export const setItems = (data: ItemType[]) =>
   ({type: 'items/SET-ITEMS', payload: data} as const)
-export const setQueryParams = (data: QueryParamType) =>
-  ({type: 'items/SET-QUERY-PARAMS', payload: data} as const)
+export const changeQueryParams = (data: QueryParamType) =>
+  ({type: 'items/CHANGE-QUERY-PARAMS', payload: data} as const)
 export const clearQueryParams = () =>
   ({type: 'items/CLEAR-QUERY-PARAMS'} as const)
 
@@ -78,7 +78,7 @@ export const loadItems = (): AppThunk =>
 // types
 export type ItemsActionsType =
   | ReturnType<typeof setItems>
-  | ReturnType<typeof setQueryParams>
+  | ReturnType<typeof changeQueryParams>
   | ReturnType<typeof clearQueryParams>
 
 export type InitialStateType = {
@@ -99,9 +99,14 @@ export type QueryParamType = {
   pageSize?: number
   totalCount?: number
   sortTitle?: SortColumnsType
+  filterTitle?: ColumnFilterNames
+  filterMethod?: ColumnFilterMethod
+  filterValue?: string | number
   
 }
 export type ColumnSortNames = 'name' | 'count' | 'distance'
+export type ColumnFilterNames = 'name' | 'count' | 'distance'| 'date'
+export type ColumnFilterMethod = 'equal' | 'includes' | 'more'| 'lower'
 
 //  0{columnName} - low to high,  1{columnName} - high to low
 export type SortColumnsType = `0${ColumnSortNames}` | `1${ColumnSortNames}` | undefined

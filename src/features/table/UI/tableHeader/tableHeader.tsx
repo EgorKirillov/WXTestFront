@@ -2,7 +2,7 @@ import React, {MouseEvent} from 'react';
 import styles from './tableHeader.module.css'
 import {useAppDispatch, useAppSelector} from "../../../../common/hooks/hooks";
 import {createColumnName} from "../../../../common/utils/createColumnName";
-import {ColumnSortNames, setQueryParams, SortColumnsType} from "../../itemsReducer";
+import {ColumnSortNames, changeQueryParams, SortColumnsType} from "../../itemsReducer";
 
 export const TableHeader = () => {
   
@@ -16,7 +16,7 @@ export const TableHeader = () => {
     if (sortColumn === `1${name}`) {
       sortValue = `0${name}` as SortColumnsType
     }
-    dispatch(setQueryParams({sortTitle: sortValue}))
+    dispatch(changeQueryParams({sortTitle: sortValue}))
     
   }
   
