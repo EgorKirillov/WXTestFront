@@ -20,7 +20,12 @@ const itemsData:ItemType[] = [
 const initialState: InitialStateType = {
   
     items: itemsData as ItemType[],
-    queryParam: {sortTitle:'1count'} as QueryParamType
+    queryParam: {
+      // page: 1,
+      currentPage: 1,
+      pageSize: 4,
+      totalCount: 500,
+      sortTitle:'1count'} as QueryParamType
   
 }
 
@@ -94,7 +99,7 @@ export type ItemType = {
   distance: number
 }
 export type QueryParamType = {
-  page?: number
+  // page?: number
   currentPage?: number
   pageSize?: number
   totalCount?: number
