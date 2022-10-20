@@ -1,6 +1,7 @@
 import {ColumnFilterMethod, ColumnFilterNames, QueryParamType} from "../../features/table/itemsReducer";
 import {MethodType} from "../../features/table/UI/filter/filter";
 
+//утилитная функция по преобразования данных фильтрации в параметры state
 export const createFilterQueryParams = (name: ColumnFilterNames, method: MethodType, value: string | number): QueryParamType => {
   let filterMethod = 'none'
   
