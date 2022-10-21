@@ -19,7 +19,11 @@ export const Filter = () => {
   const dispatch = useAppDispatch()
   
   const filterNames: ColumnFilterNames[] = ['name', 'count', 'distance', 'date']
-  const filterMethod: MethodType[] = ['none', '=', 'included', '>', '<']
+  let filterMethod: MethodType[]
+  if (name !=='name') {
+    filterMethod = ['none', '=', '>', '<']
+  } else {filterMethod= ['none', '=', 'included']}
+  
   
   // выбор имени колонки по которой производится фильтрация
   const selectName = (e: SyntheticEvent<HTMLSelectElement, Event>) => {
