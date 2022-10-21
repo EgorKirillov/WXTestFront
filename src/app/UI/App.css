@@ -15,6 +15,7 @@ th {
 td {
   color: #669;
   padding: 7px 17px;
+  text-align: center;
 }
 tr:hover td {
   background: #ccddff;
