@@ -1,5 +1,6 @@
 import {setError, setIsInitialize, setStatusLoading} from "../../app/appStatusReducer";
 import {AppThunk} from "../../app/store";
+import {itemAPI} from "./itemAPI";
 
 
 // temp value for DEV
@@ -18,15 +19,11 @@ const itemsData:ItemType[] = [
 ]
 
 const initialState: InitialStateType = {
-  
     items: itemsData as ItemType[],
     queryParam: {
-      // page: 1,
       currentPage: 1,
-      pageSize: 4,
-      totalCount: 500,
-      sortTitle:'1count'} as QueryParamType
-  
+      pageSize: 4,} as QueryParamType ,
+  totalCount:10
 }
 
 export const itemsReducer = (state: InitialStateType = initialState, action: ItemsActionsType
@@ -47,7 +44,11 @@ export const itemsReducer = (state: InitialStateType = initialState, action: Ite
         ...state,
         queryParam: {} as QueryParamType
       }
-
+    case 'items/SET-TOTAL-COUNT':
+      return {
+        ...state,
+        totalCount: action.payload
+      }
     default:
       return state
   }
@@ -56,6 +57,9 @@ export const itemsReducer = (state: InitialStateType = initialState, action: Ite
 // actions
 export const setItems = (data: ItemType[]) =>
   ({type: 'items/SET-ITEMS', payload: data} as const)
+export const setTotalCount = (totalCount:number) =>
+  ({type: 'items/SET-TOTAL-COUNT', payload: totalCount} as const)
+
 export const changeQueryParams = (data: QueryParamType) =>
   ({type: 'items/CHANGE-QUERY-PARAMS', payload: data} as const)
 export const clearQueryParams = () =>
@@ -63,12 +67,14 @@ export const clearQueryParams = () =>
 
 // thunks
 export const loadItems = (): AppThunk =>
-  async dispatch => {
+  async (dispatch,  getState) => {
     try {
       dispatch(setError(""))
       dispatch(setStatusLoading('loading'))
-      //const res = await
-      // dispatch(setItems(res.data.items))
+      const queryParams:QueryParamType = getState().items.queryParam
+      const res = await itemAPI.getItems(queryParams)
+      dispatch(setItems(res.data.items))
+      dispatch(setTotalCount(res.data.totalCount))
       dispatch(setStatusLoading('succeeded'))
       dispatch(setIsInitialize(true))
       
@@ -85,30 +91,31 @@ export type ItemsActionsType =
   | ReturnType<typeof setItems>
   | ReturnType<typeof changeQueryParams>
   | ReturnType<typeof clearQueryParams>
+  | ReturnType<typeof setTotalCount>
 
 export type InitialStateType = {
   items: ItemType[],
   queryParam: QueryParamType
+  totalCount?: number
 }
 
 export type ItemType = {
-  id: string
+  id: string | number
   name: string
   date: string
   count: number
   distance: number
 }
 export type QueryParamType = {
-  // page?: number
   currentPage?: number
   pageSize?: number
-  totalCount?: number
   sortTitle?: SortColumnsType
   filterTitle?: ColumnFilterNames
   filterMethod?: ColumnFilterMethod
   filterValue?: string | number
   
 }
+
 export type ColumnSortNames = 'name' | 'count' | 'distance'
 export type ColumnFilterNames = 'name' | 'count' | 'distance'| 'date'
 export type ColumnFilterMethod = 'equal' | 'includes' | 'more'| 'lower'
