@@ -52,7 +52,7 @@ export const Filter = () => {
     clearTimeout(timerId)
     const id = +setTimeout(() => {
       const filterParam = filterName !== 'none' ? createFilterQueryParams(filterName, method, val) : {}
-      dispatch(changeQueryParams(filterParam))
+      dispatch(changeQueryParams({...filterParam, currentPage:1}))
     }, 1000)
     setTimerId(id)
   }
