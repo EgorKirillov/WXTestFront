@@ -1,4 +1,4 @@
-import {setError, setIsInitialize, setStatusLoading} from "../../app/appStatusReducer";
+import {setError, setStatusLoading} from "../../app/appStatusReducer";
 import {AppThunk} from "../../app/store";
 import {itemAPI} from "./itemAPI";
 
@@ -83,7 +83,6 @@ export const loadItems = (): AppThunk =>
       dispatch(setItems(res.data.items))
       dispatch(setTotalCount(res.data.totalCount))
       dispatch(setStatusLoading('succeeded'))
-      dispatch(setIsInitialize(true))
       
     } catch (e) {
       console.log(e)

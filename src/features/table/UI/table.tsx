@@ -9,8 +9,11 @@ import {loadItems} from "../itemsReducer";
 import {NotFound} from "./notFound/notFound";
 
 import styles from './table.module.css'
+import {Loader} from "./loader/loader";
 
 export const Table = () => {
+  const loading = useAppSelector(state => state.app.status)
+  const isLoading = loading==='loading'
   const queryParams = useAppSelector(state => state.items.queryParam)
   const totalCount = useAppSelector(state => state.items.totalCount)
   
@@ -33,12 +36,15 @@ export const Table = () => {
       <Filter/>
       
       <Paginator/>
+      {/*<Loader hidden={isLoading}/>*/}
       {notFound
         ? <NotFound/>
         : <table className={styles.table}>
           <TableHeader/>
           <TableBody/>
-          <caption className={styles.discription}>Таблица наименование с датами количеством и дистанцией</caption>
+          <caption className={styles.discription}>Таблица наименование с датами количеством и дистанцией
+            <Loader hidden={isLoading}/>
+          </caption>
         </table>}
     
     </section>
